@@ -1,5 +1,4 @@
-﻿
-
+﻿using System.Security.Cryptography.X509Certificates;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
@@ -16,6 +15,8 @@ namespace TelegramBotLesson.TelegramBotFolder
         {
             this.Token = token;
         }
+
+        
 
         public async Task BotHandle()
         {
@@ -48,19 +49,67 @@ namespace TelegramBotLesson.TelegramBotFolder
 
         public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
+
+
+
             // Only process Message updates: https://core.telegram.org/bots/api#message
             if (update.Message is not { } message)
                 return;
-            // Only process text messages
-            if (message.Text is not { } messageText)
-                return;
+            //// Only process text messages
+            //if (message.Text is not { } messageText)
+            //    return;
 
-            
 
-            var chatId = message.Chat.Id;
 
-            Console.WriteLine($"Received a '{messageText}' message in chat {chatId}. UserName =>  {message.Chat.Username}");
+            var chatId = update.Message.Chat.Id;
+           // var message = update.Message;
 
+            Console.WriteLine($"Received a '{message.Text}' message in chat {chatId}. UserName =>  {message.Chat.Username}");
+
+            //var fileStream = new FileStream(@"C:\Users\dotnetbillioner\Videos\test.mp4", FileMode.Open);
+            Console.WriteLine($"Message Type: {message.Type}  => Type {MessageType.Sticker} ");
+            /*
+            if (message.Type == MessageType.Photo)
+            {
+
+                Console.WriteLine("Nima gaapppppp");
+
+                await botClient.SendPhotoAsync(
+                    chatId: chatId,
+                    photo: InputFile.FromFileId(message.Photo.Last()!.FileId),
+                    cancellationToken: cancellationToken);
+            }
+
+            else if (message.Text == "albom")
+            {
+                await botClient.SendMediaGroupAsync(
+                    chatId: chatId,
+                    media: new IAlbumInputMedia[]
+                    {
+                        new InputMediaPhoto(
+                            InputFile.FromUri("https://cdn.pixabay.com/photo/2017/06/20/19/22/fuchs-2424369_640.jpg")),
+                        new InputMediaPhoto(
+                            InputFile.FromUri("https://cdn.pixabay.com/photo/2017/04/11/21/34/giraffe-2222908_640.jpg")),
+                    },
+                    cancellationToken: cancellationToken);
+            }
+            */
+            if (message.Text == "pool")
+            {
+                await botClient.SendPollAsync(
+                    chatId: "@ntbot11",
+                    question: "Did you ever hear the tragedy of Darth Plagueis The Wise?",
+                    options: new[]
+                    {
+                        "Yes for the hundredth time!",
+                        "No, who`s that?",
+                        "Nope, who is that?",
+                    },
+                    cancellationToken: cancellationToken);
+            }
+
+
+            /**
 
             if (messageText == "dotnet" || messageText == "C#")
             {
@@ -106,6 +155,7 @@ namespace TelegramBotLesson.TelegramBotFolder
             {
                 var inlineKeyboard = new InlineKeyboardMarkup(new[]
                         {
+                      
                             InlineKeyboardButton.WithUrl("Youtube", "https://www.youtube.com/"),
                             InlineKeyboardButton.WithUrl("Google", "https://www.google.com/"),
                             InlineKeyboardButton.WithUrl("Instagram", "https://www.instagram.com/"),
@@ -125,14 +175,35 @@ namespace TelegramBotLesson.TelegramBotFolder
                     replyMarkup: inlineKeyboard,
                     cancellationToken: cancellationToken);
             }
+            else if (messageText == "/sdfsdafsadfasd")
+            {
+                var fileStream = new FileStream(@"C:\Users\dotnetbillioner\Videos\test.mp4", FileMode.Open);
+
+                await botClient.SendVideoAsync(
+                chatId: chatId,
+                video: InputFile.FromFileId(message.Video!.FileId),
+                thumbnail: InputFile.FromUri("https://raw.githubusercontent.com/TelegramBots/book/master/src/2/docs/thumb-clock.jpg"),
+                supportsStreaming: true,
+                cancellationToken: cancellationToken);
+            }
+            else if (messageText == "/rasm")
+            {
+                var fileStream = new FileStream(@"C:\Users\dotnetbillioner\Pictures\dotnet.png", FileMode.Open);
+
+                await botClient.SendPhotoAsync(
+                chatId: chatId,
+                photo: InputFile.FromStream(fileStream),
+                cancellationToken: cancellationToken);
+            }
+            */
 
 
 
-            //Echo received message text
-            //Message sentMessage2 = await botClient.SendTextMessageAsync(
-            //    chatId: chatId,
-            //    text: $"Bio Ketyabdi:\n + {messageText} => {message.Chat.Bio}",
-            //    cancellationToken: cancellationToken);
+                //Echo received message text
+                //Message sentMessage2 = await botClient.SendTextMessageAsync(
+                //    chatId: chatId,
+                //    text: $"Bio Ketyabdi:\n + {messageText} => {message.Chat.Bio}",
+                //    cancellationToken: cancellationToken);
         }
 
 

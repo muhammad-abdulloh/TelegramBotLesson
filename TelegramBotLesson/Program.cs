@@ -1,5 +1,4 @@
-﻿using Telegram.Bot;
-using TelegramBotLesson.TelegramBotFolder;
+﻿using TelegramBotLesson.TelegramBotFolder;
 
 namespace TelegramBotLesson
 {
