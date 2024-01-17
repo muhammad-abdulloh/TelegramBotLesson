@@ -93,109 +93,147 @@ namespace TelegramBotLesson.TelegramBotFolder
                     },
                     cancellationToken: cancellationToken);
             }
-            */
-            if (message.Text == "pool")
+            */ //6198571336
+            //if (message.Text == "pool")
+            //{
+            //    await botClient.SendPollAsync(
+            //        chatId: "-1001915953272",
+            //        question: "Did you ever hear the tragedy of Darth Plagueis The Wise?",
+            //        options: new[]
+            //        {
+            //            "Yes for the hundredth time!",
+            //            "No, who`s that?",
+            //            "Nope, who is that?",
+            //        },
+            //        cancellationToken: cancellationToken);
+            //}
+
+            if (message.Text == "albom")
             {
-                await botClient.SendPollAsync(
-                    chatId: "@ntbot11",
-                    question: "Did you ever hear the tragedy of Darth Plagueis The Wise?",
-                    options: new[]
+                ReplyKeyboardMarkup replyKeyboardMarkup = new(new[]
                     {
-                        "Yes for the hundredth time!",
-                        "No, who`s that?",
-                        "Nope, who is that?",
-                    },
-                    cancellationToken: cancellationToken);
-            }
+                        new KeyboardButton[] { "Help me" },
+                        new KeyboardButton[] { "Call me ☎️" },
+                    })
+                    {
+                        ResizeKeyboard = true
+                    };
 
-
-            /**
-
-            if (messageText == "dotnet" || messageText == "C#")
-            {
-                //Echo received message text
-                Message sendMessage = await botClient.SendTextMessageAsync(
+                Message sentMessage = await botClient.SendTextMessageAsync(
                     chatId: chatId,
-                    text: "Trying *all the parameters* of `sendMessage` method",
-                    parseMode: ParseMode.MarkdownV2,
-                    disableNotification: true,
-                    replyToMessageId: update.Message.MessageId,
-                    replyMarkup: new InlineKeyboardMarkup(
-                        InlineKeyboardButton.WithUrl(
-                            text: "Dotnet Uzga Booor",
-                            url: "https://docs.dot-net.uz/")),
+                    text: "Choose a response",
+                    replyMarkup: replyKeyboardMarkup,
                     cancellationToken: cancellationToken);
             }
-            else if (messageText == "salom")
-            {
-                //Echo received message text
-                Message sendMessage = await botClient.SendTextMessageAsync(
-                    chatId: chatId,
-                    text: $"Salom {message.Chat.Username}",
-                    replyToMessageId: update.Message.MessageId,
-                    cancellationToken: cancellationToken);
-            }
-            else if (messageText == "/weather" || messageText == "/obhavo")
-            {
-                //Echo received message text
-                Message sendMessage = await botClient.SendTextMessageAsync(
-                    chatId: chatId,
-                    text: "Ob Havo Ma'lumotlarini ko'rish",
-                    parseMode: ParseMode.MarkdownV2,
-                    disableNotification: true,
-                    replyToMessageId: update.Message.MessageId,
-                    replyMarkup: new InlineKeyboardMarkup(
-                        InlineKeyboardButton.WithUrl(
-                            text: "Bugungi Ob havoni ko'rish",
-                            url: "https://www.google.com/search?q=ob+havo+toshkent&oq=ob+havo+&gs_lcrp=EgZjaHJvbWUqBwgCEAAYgAQyBggAEEUYOTIPCAEQIxgnGJ0CGIAEGIoFMgcIAhAAGIAEMgcIAxAAGIAEMgcIBBAAGIAEMgcIBRAAGIAEMgcIBhAAGIAEMgcIBxAAGIAEMgcICBAAGIAEMgcICRAAGIAE0gEIMzU2OGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8")
-                        ),
-                    cancellationToken: cancellationToken);
-            }
-            else if (messageText == "/start")
-            {
-                var inlineKeyboard = new InlineKeyboardMarkup(new[]
-                        {
-                      
-                            InlineKeyboardButton.WithUrl("Youtube", "https://www.youtube.com/"),
-                            InlineKeyboardButton.WithUrl("Google", "https://www.google.com/"),
-                            InlineKeyboardButton.WithUrl("Instagram", "https://www.instagram.com/"),
-                            InlineKeyboardButton.WithUrl("GitHub", "https://www.github.com/"),
-                            InlineKeyboardButton.WithUrl("Linkedin", "https://www.Linkedin.com/"),
-                            InlineKeyboardButton.WithUrl("dotnet uz", "https://docs.dot-net.uz/"),
-                        });
 
-                    
-                //Echo received message text
-                Message sendMessage = await botClient.SendTextMessageAsync(
+            if(message.Text == "Help me")
+            {
+                ReplyKeyboardMarkup replyKeyboardMarkup = new(new[]
+                    {
+                        new KeyboardButton[] { "Nima gap" },
+                        new KeyboardButton[] { "Orqaga" },
+                    })
+                {
+                    ResizeKeyboard = true
+                };
+
+                Message sentMessage = await botClient.SendTextMessageAsync(
                     chatId: chatId,
-                    text: "Dollar kursini ko'rvolish",
-                    parseMode: ParseMode.MarkdownV2,
-                    disableNotification: true,
-                    replyToMessageId: update.Message.MessageId,
-                    replyMarkup: inlineKeyboard,
+                    text: "Choose a response",
+                    replyMarkup: replyKeyboardMarkup,
                     cancellationToken: cancellationToken);
             }
-            else if (messageText == "/sdfsdafsadfasd")
-            {
-                var fileStream = new FileStream(@"C:\Users\dotnetbillioner\Videos\test.mp4", FileMode.Open);
 
-                await botClient.SendVideoAsync(
-                chatId: chatId,
-                video: InputFile.FromFileId(message.Video!.FileId),
-                thumbnail: InputFile.FromUri("https://raw.githubusercontent.com/TelegramBots/book/master/src/2/docs/thumb-clock.jpg"),
-                supportsStreaming: true,
-                cancellationToken: cancellationToken);
-            }
-            else if (messageText == "/rasm")
-            {
-                var fileStream = new FileStream(@"C:\Users\dotnetbillioner\Pictures\dotnet.png", FileMode.Open);
+            
 
-                await botClient.SendPhotoAsync(
-                chatId: chatId,
-                photo: InputFile.FromStream(fileStream),
-                cancellationToken: cancellationToken);
-            }
-            */
+
+                /**
+
+                if (messageText == "dotnet" || messageText == "C#")
+                {
+                    //Echo received message text
+                    Message sendMessage = await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: "Trying *all the parameters* of `sendMessage` method",
+                        parseMode: ParseMode.MarkdownV2,
+                        disableNotification: true,
+                        replyToMessageId: update.Message.MessageId,
+                        replyMarkup: new InlineKeyboardMarkup(
+                            InlineKeyboardButton.WithUrl(
+                                text: "Dotnet Uzga Booor",
+                                url: "https://docs.dot-net.uz/")),
+                        cancellationToken: cancellationToken);
+                }
+                else if (messageText == "salom")
+                {
+                    //Echo received message text
+                    Message sendMessage = await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: $"Salom {message.Chat.Username}",
+                        replyToMessageId: update.Message.MessageId,
+                        cancellationToken: cancellationToken);
+                }
+                else if (messageText == "/weather" || messageText == "/obhavo")
+                {
+                    //Echo received message text
+                    Message sendMessage = await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: "Ob Havo Ma'lumotlarini ko'rish",
+                        parseMode: ParseMode.MarkdownV2,
+                        disableNotification: true,
+                        replyToMessageId: update.Message.MessageId,
+                        replyMarkup: new InlineKeyboardMarkup(
+                            InlineKeyboardButton.WithUrl(
+                                text: "Bugungi Ob havoni ko'rish",
+                                url: "https://www.google.com/search?q=ob+havo+toshkent&oq=ob+havo+&gs_lcrp=EgZjaHJvbWUqBwgCEAAYgAQyBggAEEUYOTIPCAEQIxgnGJ0CGIAEGIoFMgcIAhAAGIAEMgcIAxAAGIAEMgcIBBAAGIAEMgcIBRAAGIAEMgcIBhAAGIAEMgcIBxAAGIAEMgcICBAAGIAEMgcICRAAGIAE0gEIMzU2OGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8")
+                            ),
+                        cancellationToken: cancellationToken);
+                }
+                else if (messageText == "/start")
+                {
+                    var inlineKeyboard = new InlineKeyboardMarkup(new[]
+                            {
+                          
+                                InlineKeyboardButton.WithUrl("Youtube", "https://www.youtube.com/"),
+                                InlineKeyboardButton.WithUrl("Google", "https://www.google.com/"),
+                                InlineKeyboardButton.WithUrl("Instagram", "https://www.instagram.com/"),
+                                InlineKeyboardButton.WithUrl("GitHub", "https://www.github.com/"),
+                                InlineKeyboardButton.WithUrl("Linkedin", "https://www.Linkedin.com/"),
+                                InlineKeyboardButton.WithUrl("dotnet uz", "https://docs.dot-net.uz/"),
+                            });
+
+                        
+                    //Echo received message text
+                    Message sendMessage = await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: "Dollar kursini ko'rvolish",
+                        parseMode: ParseMode.MarkdownV2,
+                        disableNotification: true,
+                        replyToMessageId: update.Message.MessageId,
+                        replyMarkup: inlineKeyboard,
+                        cancellationToken: cancellationToken);
+                }
+                else if (messageText == "/sdfsdafsadfasd")
+                {
+                    var fileStream = new FileStream(@"C:\Users\dotnetbillioner\Videos\test.mp4", FileMode.Open);
+
+                    await botClient.SendVideoAsync(
+                    chatId: chatId,
+                    video: InputFile.FromFileId(message.Video!.FileId),
+                    thumbnail: InputFile.FromUri("https://raw.githubusercontent.com/TelegramBots/book/master/src/2/docs/thumb-clock.jpg"),
+                    supportsStreaming: true,
+                    cancellationToken: cancellationToken);
+                }
+                else if (messageText == "/rasm")
+                {
+                    var fileStream = new FileStream(@"C:\Users\dotnetbillioner\Pictures\dotnet.png", FileMode.Open);
+
+                    await botClient.SendPhotoAsync(
+                    chatId: chatId,
+                    photo: InputFile.FromStream(fileStream),
+                    cancellationToken: cancellationToken);
+                }
+                */
 
 
 
@@ -204,7 +242,7 @@ namespace TelegramBotLesson.TelegramBotFolder
                 //    chatId: chatId,
                 //    text: $"Bio Ketyabdi:\n + {messageText} => {message.Chat.Bio}",
                 //    cancellationToken: cancellationToken);
-        }
+            }
 
 
         public Task HandlePollingErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
